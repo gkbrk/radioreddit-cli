@@ -6,6 +6,10 @@ else:
     stream_name = "main"
 
 stream_name_to_url = {
+    "main": "http://173.231.136.91:8000/",
+    "random": "http://173.231.136.91:8050/",
+    "rock": "http://173.231.136.91:8020/",
+    "metal": "http://173.231.136.91:8090/",
     "indie": "http://173.231.136.91:8070/"
 }
 
