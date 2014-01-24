@@ -22,7 +22,7 @@ except KeyError:
     sys.exit(1)
 except OSError as err:
     if err.errno == 2:
-        "You need to install mplayer to play the streams. (apt-get install mplayer)"
+        print "You need to install mplayer to play the streams. (apt-get install mplayer)"
         sys.exit(1)
 
 try:
