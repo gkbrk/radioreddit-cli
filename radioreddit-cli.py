@@ -13,13 +13,17 @@ stream_name_to_url = {
     "indie": "http://173.231.136.91:8070/"
 }
 
-if not stream_name in stream_name_to_url:
+try:
+    player = subprocess.Popen(["mplayer", stream_name_to_url[stream_name]], stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+except KeyError:
     print "Usage: %s [station]" % sys.argv[0]
     print "Available stations: %s" % ", ".join(sorted(stream_name_to_url))
     print "Default stream: main"
     sys.exit(1)
-
-player = subprocess.Popen(["mplayer", stream_name_to_url[stream_name]], stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+except OSError as err:
+    if err.errno == 2:
+        "You need to install mplayer to play the streams. (apt-get install mplayer)"
+        sys.exit(1)
 
 try:
     while not player.poll():
